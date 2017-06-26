@@ -1,0 +1,20 @@
+##
+setwd("C:/Users/Administrator/Desktop/zhouxia/")
+dir()
+zhouxia<-read.table("zhouxia_800.txt",sep="\t",stringsAsFactors = F)
+
+#选取符合条件的（横向，行上选举相应的列出来）
+aa<-as.data.frame(t(zhouxia))
+bb<-aa[which(aa$CD19>0),]
+CC<-as.data.frame(t(bb))
+write.csv(CC,"zhouxia.csv")
+
+#筛选高表达的基因
+mydata<-CC
+mydata2 <- mydata[rowMeans(mydata[,1:164]) != 0 & rowSums(!!mydata[,1:164]) > 5,]
+
+备注
+!a ##将0变为1, >1变为0
+!!a #将0变为0，将>1变为1
+
+
