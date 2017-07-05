@@ -24,6 +24,9 @@ VizPCA(pbmc, 1:2)
 PCAPlot(pbmc, 1, 2,pt.size=3)
 PCAPlot(pbmc, 2, 3)
 
+a<-as.data.frame(pbmc@pca.rot[pbmc@pca.rot[,1] > 40,])  ##挑选出符合条件的样品名称！！！
+#####
+
 PCHeatmap(pbmc, pc.use = 1, cells.use = 50, do.balanced = TRUE)
 PCHeatmap(pbmc, pc.use = 2, cells.use = 50, do.balanced = TRUE)
 #PCHeatmap(pbmc, pc.use = 1, cells.use = 50, do.balanced = T,label.columns = FALSE)
