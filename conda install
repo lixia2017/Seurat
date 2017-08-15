@@ -1,0 +1,87 @@
+链接：https://zhuanlan.zhihu.com/p/25085567
+使用Bioconda管理Linux系统中的生物信息软件
+青山屋主
+青山屋主
+6 个月前
+生物信息操作中必不可少的就是Linux系统中各种生物信息学软件的安装。不同软件有不同的安装方法，对系统环境的依赖不同也不同，对于新手来说，经常是一个软件的安装和配置就要折腾很长一段时间时间，大大增加了学习成本。
+我自己有两个方法来尽量减少安装软件所消耗的时间：一是直接安装Bio-linux系统，这个系统已经内置了大部分生物信息分析所需要的软件，非常适合新手直接学习分析技术，绕过软件安装和环境配置的麻烦问题。二是使用Bioconda安装和管理各种软件。Bio-linux系统和常用的服务器系统还是有差别的，如果想在学习生物信息分析的同时掌握一些Linux系统的操作甚至维护的技术，配置一台CentOS系统的计算机就很有必要了。这个时候Bioconda就非常有用了。
+
+本文参考知乎专栏以及基因课相关课程（http://genek.tv/dirlist/index/id/65）对Bioconda的安装和使用做简单介绍。
+
+Bioconda介绍
+
+Bioconda是conda上一个分发生物信息的频道。而conda是最初为管理python包而建立的。以下是相关介绍：
+
+“Conda is a portable package manager primarily for python and precompiled binaries. Miniconda is the base system of conda. It includes a standard python and a few required dependencies such as readline and sqlite. In conda, a channel contains a set of software typically managed by the same group.Bioconda is a channel of conda focusing on bioinformatics software. ”
+
+Bioconda主页：Using bioconda - Bioconda documentation
+
+anaconda、miniconda和conda的区别：FAQs - Bioconda documentation
+简单说来：“conda is a package manager, Miniconda is the conda installer, and Anaconda is a scientific Python distribution that also includes conda.”
+Bioconda的优点是安装简单，各个软件依赖的环境一同打包且相互隔离，非常适合在服务器中建立自己的生物信息分析环境。
+
+Bioconda的下载与安装
+1.下载和安装miniconda 
+bioconda的使用首先需要安装miniconda[http://conda.pydata.org/miniconda.html]。选择linux的64位的python2.7版本（共提供win、Mac、linux三种系统，同时支持python3和python2），直接点击下载。或者复制链接后，用wget下载。
+wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
+下载完成后，在终端键入bash命令进行安装：
+
+bash Miniconda-latest-Linux-x86_64.sh
+之后按照提示点击回车，输入要安装的位置，或者输入yes
+本图片引用自生信技能树-曾健明@曾健明 的博客用Miniconda，Bioconda来安装常见的生物信息学软件 | 生信菜鸟团
+
+输入yes后，还没有完成最后安装，还需要source一下：
+
+source ~/.bashrc
+这时miniconda就安装好了，输入“conda”会显示相应的信息：
+
+输入“conda list”来查看已经安装的软件：
+
+2.添加channels
+
+conda config --add channels conda-forge
+conda config --add channels defaults
+conda config --add channels r
+conda config --add channels bioconda
+查看已经添加的channels：
+
+conda config --get channels
+
+3.更新miniconda
+
+conda update conda
+4.卸载miniconda
+删除miniconda的整个文件夹：
+
+rm -rf ~/miniconda
+从环境变量中去掉miniconda：打开~/.bash_profile文件，删掉其中miniconda的路径，关闭并保存
+
+删除隐藏的.condarc 、.conda以及.continuum文件
+
+利用Bioconda安装生物信息软件
+
+要通过conda安装软件，首先从这里（Available packages）查找该软件是否被conda支持。如果支持，只需输入以下命令即可安装：
+
+conda install fastqc（软件名）
+安装完成后，可以用“which 软件名”来查看该软件安装的位置：
+
+或者再次查看已安装软件列表“conda list”
+
+conda默认安装软件的最新版本，如果想安装指定版本的某个软件，可以先用“conda search 软件名”搜索软件版本
+
+星号标记的表示是已经安装的版本。要安装其他版本，输入：
+
+conda install 软件名=版本号
+这时conda会先卸载已安装版本，然后重新安装指定版本。
+
+利用conda更新和卸载软件
+
+查看已安装软件：
+
+conda list
+更新指定软件：
+
+conda update 软件名
+卸载指定软件：
+
+conda remove 软件名
