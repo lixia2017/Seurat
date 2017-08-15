@@ -1,0 +1,114 @@
+链接：
+https://zhuanlan.zhihu.com/p/27670618?utm_source=wechat_session&utm_medium=social&from=groupmessage&isappinstalled=0hoptop:http://www.jianshu.com/p/b16ae34f9012
+
+转录组入门1-环境配置与软件安装
+青山屋主
+青山屋主
+1 个月前
+http://fbb84b26.wiz03.com/share/s/3XK4IC0cm4CL22pU-r1HPcQQ079KTH0H0QfP2_4Aye31Hjuk
+系统环境
+
+CentOS 7.0
+
+软件安装
+
+anaconda的安装请参考： 
+使用Bioconda管理Linux系统中的生物信息软件 - 知乎专栏 
+Anaconda使用总结 - Python - 伯乐在线 
+需要安装的软件包括 sratoolkit,fastqc,hisats,samtools,htseq-count,R,Rstudio
+
+sratoolkit
+
+介绍： sratoolkit的主要用途还是把NCBI SRA（Sequence Read Archive）数据库中的NGS序列数据从 sra 格式转换到 fastq 格式，以便于后续的数据分析。 
+官网主页：Software : Sequence Read Archive : NCBI/NLM/NIH 
+中文相关介绍一篇：sra-tools 的安装与简单使用 
+安装与测试：
+
+#直接用anaconda安装 @沈梦园提供
+conda install -c jfear sratoolkit     
+#或者手动安装：
+cd Downloads
+wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.8.2-1/sratoolkit.2.8.2-1-centos_linux64.tar.gz
+#下载已经编译好的适合CentOS 64位系统的版本
+tar -zxvf sratoolkit.2.8.2-1-centos_linux64.tar.gz #解包解压
+mv sratoolkit.2.8.2-1-centos_linux64.tar.gz ~/biosoft #移动到专门安装生物信息软件的目录下边
+# 加入环境变量
+echo 'PATH=$PATH:~/biosoft/sratoolkit.2.8.2-1-centos_linux64.tar.gz/bin' >> ~/.bashrc 
+source ~/.bashrc
+# 测试
+prefetch -v
+# 下载测试文件SRR390728，默认存放在家目录下的ncbi文件夹中
+prefetch -c SRR390728
+fastqc
+
+介绍：二代测序数据质量分析软件 
+官网主页：FastQC A Quality Control tool for High Throughput Sequence Data 
+中文相关介绍一篇：20160410 测序分析--使用 FastQC 做质控 
+安装与测试：
+
+conda install fastqc
+fastqc  #测试是否能正常打开该软件
+hisat2
+
+简介：将测序结果比对到人类参考基因组上。HISAT2是TopHat2/Bowti2的继任者，使用改进的BWT算法，实现了更快的速度和更少的资源占用。 
+官网主页：HISAT2 
+中文相关介绍：Public Library of Bioinformatics 
+安装与测试：
+
+conda install hisat2
+hisat2 -h  #测试
+
+samtools
+
+简介：一种处理SAM、BAM文件的工具软件。BAM格式文件是存放高通量测序中比对结果的标准格式文件。 
+官网主页：旧主页SAMtools 新主页Samtools 
+中文相关介绍：samtools 的使用 - OA_maque - 博客园 
+安装与测试：
+
+conda install samtools
+samtools  -help
+htseq-count
+
+简介：htseq-count 是一款用于reads计数的软件，他能对位于基因组上的一些单位的reads数进行统计，这里所说的单位主要是指染色体上的一组位置区间（我们常见的就是gene exon） 
+官网主页：Prequisites and installation 
+中文相关介绍：htseq-count的用法-Bluesky's blog 
+HTSeq 的安装 - OA_maque - 博客园 
+安装与测试：
+
+#anaconda 只能安装0.7.2版没有最新版
+conda install -c bioconda htseq    
+#手动安装ubuntu
+sudo apt-get install build-essential python2.7-dev python-numpy python-matplotlib
+#Redhat系列 包括CentOS
+sudo yum install python-devel numpy python-matplotlib
+#下载HTSeq
+wget https://pypi.python.org/packages/de/e4/5287587097a4c46b571babb074ce3ff91cf220bed26502b69dccd3a2fda3/HTSeq-0.8.0.tar.gz
+#解压
+tar -zxvf HTSeq-0.8.0.tar.gz
+#安装
+mv HTSeq-0.8.0 Biosoft  #移动到Biosoft文件夹中
+cd HTSeq-0.8.0               #进入该文件夹
+python setup.py install –user  #安装
+#测试  在非HTSeq-0.8.0文件夹下进行
+python
+>>>import HTSeq
+>>>                               #能够在python中导入HTSeq这个包，说明安装成功。
+R
+
+简介：一种常用语统计分析的编程语言，在生物信息分析中用于数据分析和绘图 
+官网主页：The R Project for Statistical Computing 
+中文相关介绍：R语言首页、文档和下载 - 编程语言 - 开源中国社区 
+安装与测试：
+
+sudo yum install epel-release
+sudo yum install r
+r #测试
+Rstudio
+
+简介：Rstudio是R的集成开发环境 
+官网主页：Home 
+中文相关介绍：http://jingyan.baidu.com/article/a17d52853343828098c8f21c.html 
+安装与测试：
+
+conda install rstudio
+rstudio #测试
