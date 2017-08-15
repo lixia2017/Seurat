@@ -1,0 +1,35 @@
+链接：http://www.cnblogs.com/OA-maque/p/4799074.html
+下载
+1. cd /mnt/d/Software/Biosoft
+2. mkdir sratoolkit && cd sratoolkit
+3. wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.8.2-1/sratoolkit.2.8.2-1-ubuntu64.tar.gz
+4. # curl:https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software
+5. # 长度: 76473769 (73M) [application/x-gzip]
+6. # 正在保存至: “sratoolkit.2.8.2-1-ubuntu64.tar.gz”
+7. tar -zxvf sratoolkit.2.8.2-1-ubuntu64.tar.gz
+
+
+
+SRA Toolkit
+可以直接下载已经编译过的软件。无需自己再编译。
+
+
+#SRA Toolkit Documentation
+#SRA Toolkit Installation and Configuration Guide
+#GitHub-sra-tools
+#Building and Installing from Source
+
+以下是个人简单安装使用
+
+1.先下载已编译软件文件，解压
+2.然后设置PATH变量
+
+export PATH=$PATH:/home/maque/sratoolkit.2.5.2-ubuntu64/bin
+
+
+3.使用 fastq-dump 将sra 格式文件 转换成 fastq 格式文件
+
+fastq-dump --help
+fastq-dump /media/文档/ngs/SRR1956769.sra  /media/文档/ngs/
+
+这样生成的fastq文件就在 /media/文档/ngs/ 文件夹中
