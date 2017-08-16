@@ -1,0 +1,13 @@
+按ctrl+shift+t 快捷键，打开终端，输入sudo uname --m ，按下enter
+如何查看自己运行ubuntu是32位还是64位
+2
+如果显示i686,你安装了32位操作系统
+如果显示 x86_64，你安装了64位操作系统
+如何查看自己运行ubuntu是32位还是64位
+3
+如果想知道更多信息可以试试如下命令
+sudo uname --s  显示内核名字s
+sudo uname --r 显示内核版本
+sudo uname --n 显示网络主机名
+sudo uname --p 显示cpu 
+如何查看自己运行ubuntu是32位还是64位
