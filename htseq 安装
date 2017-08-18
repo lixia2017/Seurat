@@ -28,3 +28,6 @@ Prequisites and installation
 
 其中在$ python setup.py install --user  如果有两个版本的python 需要使用
 /usr/bin/python setup.py install --user
+
+##whereis python
+##which python
