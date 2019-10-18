@@ -112,3 +112,22 @@ Rstudio
 
 conda install rstudio
 rstudio #测试
+
+
+##20191018
+
+conda install R=3.6
+
+可参考链接针对不同软件安装虚拟环境
+
+链接：miniconda的安装与使用（以转录组分析软件为例）
+
+
+ 
+
+
+
+
+
+
+
